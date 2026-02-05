@@ -25,7 +25,7 @@ useEffect(() => {
 
   return (
     <>
-      {/* ================= HERO SLIDER ================= */}
+      {/* ================= SLIDER ================= */}
       <section className="w-full">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -37,7 +37,7 @@ useEffect(() => {
         >
           <SwiperSlide>
             <div className="relative w-full">
-              {/* Optimized image */}
+             
               <img
                 src="/1.jpg"
                 alt="Banner"
@@ -62,7 +62,7 @@ useEffect(() => {
                     Trusted distributor of quality beverages.
                   </p>
 
-                  {/* CTA */}
+                 
                   <Link
                     to="/products"
                     className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"

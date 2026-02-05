@@ -9,7 +9,6 @@ export default function QuickViewModal({ product, onClose }) {
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
       <div className="bg-white rounded-xl max-w-md w-full p-6 relative">
 
-        {/* Close */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-xl"

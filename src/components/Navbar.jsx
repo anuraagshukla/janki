@@ -14,7 +14,7 @@ export default function Navbar() {
       <nav className="fixed top-0 z-50 w-full bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
-          {/* Logo */}
+       
           <img
             src="/final logo.png"
             alt="Logo"
@@ -59,7 +59,7 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Spacer so content is not hidden under fixed navbar */}
+      
       <div className="h-16" />
     </>
   );
