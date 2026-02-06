@@ -1,7 +1,8 @@
 export default function Products() {
   const products = [
-    { id: 1, name: "Campa Cola", price: 40, image: "/1.jpg" },
-    { id: 2, name: "Campa Lemon", price: 35, image: "/2.jpg" },
+    { id: 1, name: "Campa Cola", price: 40, image: "/cola.png" },
+    { id: 2, name: "Campa Lemon", price: 35, image: "/lemon.png" },
+       { id: 3, name: "Campa Orange", price: 35, image: "/orange.png" },
   ];
 
   return (
@@ -15,8 +16,8 @@ export default function Products() {
             className="border rounded-lg p-4 hover:shadow-lg"
           >
             <img src={p.image} className="h-32 mx-auto" />
-            <h3 className="mt-2 font-semibold">{p.name}</h3>
-            <p className="text-purple-700 font-bold">₹{p.price}</p>
+            <h3 className="mt-2 text-center font-semibold">{p.name}</h3>
+            <p className="text-center text-muted-700 font-bold">₹{p.price}</p>
           </div>
         ))}
       </div>

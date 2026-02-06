@@ -110,15 +110,15 @@ useEffect(() => {
 
       {/* ================= PRODUCTS ================= */}
       <section className="max-w-7xl mx-auto px-6 py-14">
-        {/* <h2 className="text-3xl font-bold mb-8">
+        <h2 className="text-3xl font-bold mb-8">
           Featured Drinks
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-5">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
-        </div> */}
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
   {loading
     ? Array.from({ length: 4 }).map((_, i) => (

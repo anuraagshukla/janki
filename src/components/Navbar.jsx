@@ -1,66 +1,137 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+
 import { useCart } from "../context/CartContext";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
   const { cart } = useCart();
+  const cartCount = cart.reduce((s, i) => s + i.qty, 0);
+const [animateCart, setAnimateCart] = useState(false);
 
-  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+useEffect(() => {
+  if (cartCount > 0) {
+    setAnimateCart(true);
+    const t = setTimeout(() => setAnimateCart(false), 400);
+    return () => clearTimeout(t);
+  }
+}, [cartCount]);
+const linkClass = ({ isActive }) =>
+  `relative text-sm font-medium transition
+   ${
+     isActive
+       ? "text-accent after:w-full after:opacity-100"
+       : "text-gray-300 hover:text-white after:w-0 after:opacity-0"
+   }
+   after:content-['']
+   after:absolute after:left-0 after:-bottom-1
+   after:h-[2px]
+   after:bg-accent
+   after:rounded-full
+   after:shadow-[0_0_8px_rgba(230,179,37,0.9)]
+   after:transition-all after:duration-300`;
 
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          
-       
-          <img
-            src="/final logo.png"
-            alt="Logo"
-            className="h-10 cursor-pointer"
-            onClick={() => navigate("/")}
-          />
+      <nav className="fixed top-4 inset-x-0 z-50 px-4">
+        <div className="max-w-7xl mx-auto">
 
-          {/* Desktop menu */}
-          <div className="hidden md:flex gap-8 font-medium items-center">
-            <Link to="/" className="hover:text-purple-700">Home</Link>
-            <Link to="/products" className="hover:text-purple-700">Products</Link>
+          {/* DARK GLASS CONTAINER */}
+      <div className="
+  relative
+  h-14
+  px-6
+  flex items-center justify-between
+  rounded-2xl
+  bg-gradient-to-r
+  from-[#7b7b7b]
+  via-[#d6d6d6]
+  to-[#7b7b7b]
+  border border-black/10
+  shadow-md
+">
 
-            {/* Cart */}
-            <div className="relative">
-              🛒
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1 rounded-full">
-                  {cartCount}
-                </span>
-              )}
+            {/* LEFT */}
+            <div className="hidden md:flex items-center gap-6">
+              <NavLink to="/" className={linkClass}>Home</NavLink>
+              <NavLink to="/products" className={linkClass}>Products</NavLink>
+              <NavLink to="/contact" className={linkClass}>Contact</NavLink>
             </div>
 
-            <Link to="/login" className="hover:text-purple-700">Login</Link>
+            {/* CENTER BRAND */}
+            <Link
+              to="/"
+              className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold tracking-wider text-white"
+            >
+               <img
+    src="/final logo.png"
+    alt="Janki Enterprise"
+    className="h-12 object-contain"
+  />
+            </Link>
+
+            {/* RIGHT */}
+            <div className="hidden md:flex items-center gap-4">
+             <NavLink
+  to="/cart"
+  className={`relative text-white ${animateCart ? "animate-cart" : ""}`}
+>
+  🛒
+  {cartCount > 0 && (
+    <span className="absolute -top-2 -right-2 bg-accent text-black text-xs px-1.5 rounded-full">
+      {cartCount}
+    </span>
+  )}
+</NavLink>
+
+              <NavLink
+                to="/login"
+                className="
+                  bg-accent text-black
+                  px-4 py-1.5
+                  rounded-full
+                  text-sm font-semibold
+                  hover:scale-105
+                  transition
+                "
+              >
+                Sign in / Up
+              </NavLink>
+            </div>
+
+            {/* MOBILE */}
+            <button
+              className="md:hidden text-xl text-white"
+              onClick={() => setOpen(!open)}
+            >
+              ☰
+            </button>
           </div>
 
-          {/* Mobile button */}
-          <button
-            className="md:hidden text-2xl"
-            onClick={() => setOpen(!open)}
-          >
-            ☰
-          </button>
+          {/* MOBILE MENU */}
+          {open && (
+            <div className="
+              md:hidden
+              mt-3
+              bg-black/80
+              backdrop-blur-xl
+              border border-white/10
+              rounded-xl
+              shadow-lg
+              p-4
+              space-y-3
+            ">
+              <Link to="/" onClick={() => setOpen(false)} className="block text-white">Home</Link>
+              <Link to="/products" onClick={() => setOpen(false)} className="block text-white">Products</Link>
+              <Link to="/contact" onClick={() => setOpen(false)} className="block text-white">Contact</Link>
+              <Link to="/cart" onClick={() => setOpen(false)} className="block text-white">Cart</Link>
+              <Link to="/login" onClick={() => setOpen(false)} className="block text-white">Login</Link>
+            </div>
+          )}
         </div>
-
-        {/* Mobile menu */}
-        {open && (
-          <div className="md:hidden bg-white border-t px-4 py-4 space-y-3">
-            <Link to="/" onClick={() => setOpen(false)}>Home</Link>
-            <Link to="/products" onClick={() => setOpen(false)}>Products</Link>
-            <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
-          </div>
-        )}
       </nav>
 
-      
-      <div className="h-16" />
+      <div className="h-24" />
     </>
   );
 }

@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
 
   return (
     <>
-      <div className="group bg-white rounded-xl shadow hover:shadow-xl transition p-4 relative">
+      <div className="group bg-surface rounded-xl shadow hover:shadow-xl transition p-4 relative">
         <img
           src={product.image}
           alt={product.name}
@@ -20,18 +20,18 @@ export default function ProductCard({ product }) {
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center rounded-xl">
           <button
             onClick={() => setOpen(true)}
-            className="bg-white px-4 py-2 rounded-lg font-semibold"
+            className="bg-accent text-black hover:opacity-90 px-4 py-2 rounded-lg font-semibold transition hover:scale-[1.02] active:scale-95"
           >
             Quick View
           </button>
         </div>
 
         <h3 className="mt-4 font-semibold">{product.name}</h3>
-        <p className="text-purple-700 font-bold">₹{product.price}</p>
+        <p className="text-muted-700 font-bold">₹{product.price}</p>
 
         <button
           onClick={() => addToCart(product)}
-          className="mt-3 w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800"
+          className="mt-3 w-full bg-accent text-black hover:opacity-90 py-2 rounded-lg hover:bg-purple-800 transition hover:scale-[1.02] active:scale-95"
         >
           Add to Cart
         </button>

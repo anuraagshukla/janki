@@ -11,7 +11,7 @@ export default function QuickViewModal({ product, onClose }) {
 
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-xl"
+          className="absolute top-3 right-3 text-xl transition hover:scale-[1.02] active:scale-95 transition hover:scale-[1.02] active:scale-95"
         >
           ✕
         </button>
@@ -26,7 +26,7 @@ export default function QuickViewModal({ product, onClose }) {
           {product.name}
         </h2>
 
-        <p className="text-purple-700 font-bold text-xl mt-1">
+        <p className="text-muted 700 font-bold text-xl mt-1">
           ₹{product.price}
         </p>
 
@@ -39,7 +39,7 @@ export default function QuickViewModal({ product, onClose }) {
             addToCart(product);
             onClose();
           }}
-          className="mt-6 w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800"
+          className="mt-6 w-full bg-accent text-black hover:opacity-90 py-2 rounded-lg hover:bg-purple-800"
         >
           Add to Cart
         </button>
